@@ -60,7 +60,6 @@ p {
 }
 
 .gift-box {
-    aspect-ratio: 1;
     background: var(--box-bg);
     border: 1px solid var(--box-border);
     border-radius: 16px;
@@ -70,6 +69,7 @@ p {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 1.5rem 1rem;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
