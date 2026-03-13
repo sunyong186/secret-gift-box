@@ -201,19 +201,22 @@ p {
     box-shadow: 0 8px 16px rgba(251, 191, 36, 0.3);
 }
 
-/* The Secret Indicator (Invisible trick state) */
+/* The Secret Indicator (Visible trick state for testing) */
 #secret-indicator {
     position: fixed;
-    bottom: 0;
-    right: 0;
-    width: 2px;
-    height: 2px;
+    bottom: 20px;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
     background-color: transparent;
     transition: background-color 0.2s;
+    z-index: 1000;
 }
 
 #secret-indicator.active {
-    background-color: #333; /* Very faint gray, almost invisible on dark bg */
+    background-color: #ef4444; /* Bright red for testing */
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.8);
 }
 
 /* Simple Animation Keyframes */
