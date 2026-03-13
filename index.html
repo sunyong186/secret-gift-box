@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>미스터리 선물 뽑기</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>🎁 랜덤 선물 뽑기 🎁</h1>
+            <p>마음에 드는 선물 상자를 하나만 골라주세요!</p>
+        </header>
+        
+        <main>
+            <div id="grid-container" class="grid-container">
+                <!-- JavaScript will inject 15 gift boxes here -->
+            </div>
+        </main>
+
+        <!-- The Modal for showing the result -->
+        <div id="result-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="fireworks"></div>
+                <h2 id="winner-name">축하합니다!</h2>
+                <div class="gift-reveal">
+                    <span id="gift-icon">🎉</span>
+                    <p id="gift-description">멋진 선물이 당첨되었습니다!</p>
+                </div>
+                <button id="close-modal-btn">닫기</button>
+            </div>
+        </div>
+
+        <!-- Secret Indicator (1px dot for the MC) -->
+        <div id="secret-indicator"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
