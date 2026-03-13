@@ -21,6 +21,7 @@ const randomGifts = [
 let currentSecretKeys = "";
 let activeTarget = null; // Will hold the target object if a secret code is matched
 let isDrawing = false;
+let currentSelectedBox = null; // Keep track of the currently selected box
 
 // DOM Elements
 const gridContainer = document.getElementById("grid-container");
@@ -83,6 +84,7 @@ function handleBoxClick(selectedBox) {
 
     // Highlight selected box
     selectedBox.classList.add("selected");
+    currentSelectedBox = selectedBox; // Store the selected box for later deletion
 
     // Clear the secret indicator immediately so it doesn't linger
     secretIndicator.classList.remove("active");
@@ -117,10 +119,17 @@ function openModal(target) {
 closeModalBtn.addEventListener("click", () => {
     resultModal.classList.add("hidden");
     
+    // Hide the box that was just opened
+    if (currentSelectedBox) {
+        currentSelectedBox.classList.remove("selected");
+        currentSelectedBox.classList.add("hidden-box");
+        currentSelectedBox = null;
+    }
+    
     // Reset Grid visuals
-    const allBoxes = document.querySelectorAll(".gift-box");
+    const allBoxes = document.querySelectorAll(".gift-box:not(.hidden-box)");
     allBoxes.forEach(b => {
-        b.classList.remove("dimmed", "selected");
+        b.classList.remove("dimmed");
     });
     
     // Reset State

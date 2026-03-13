@@ -123,6 +123,12 @@ p {
     border-color: var(--accent-gold);
 }
 
+.gift-box.hidden-box {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+}
+
 /* Modal Styles */
 .modal {
     position: fixed;
