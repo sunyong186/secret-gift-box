@@ -38,7 +38,6 @@ function initGrid() {
         box.className = "gift-box";
         box.innerHTML = `
             <div class="box-icon">🎁</div>
-            <div class="box-number">Box ${i}</div>
         `;
         
         // Add click listener

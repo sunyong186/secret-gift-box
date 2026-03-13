@@ -54,9 +54,9 @@ p {
 .grid-container {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 1.5rem;
+    gap: 2.5rem; /* Increased gap for larger boxes */
     width: 100%;
-    max-width: 900px;
+    max-width: 1000px; /* Increased max width to give boxes more room */
 }
 
 .gift-box {
@@ -69,7 +69,7 @@ p {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 1.5rem 1rem;
+    padding: 2.5rem 1.5rem; /* Increased padding to make the box bigger and taller */
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
@@ -97,8 +97,8 @@ p {
 }
 
 .box-icon {
-    font-size: 3rem;
-    margin-bottom: 0.5rem;
+    font-size: 4.5rem; /* Increased icon size */
+    margin-bottom: 0; /* Removed margin since text is gone */
     filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
     transition: transform 0.3s ease;
 }
@@ -107,11 +107,7 @@ p {
     transform: scale(1.1) rotate(-5deg);
 }
 
-.box-number {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: var(--text-secondary);
-}
+/* .box-number class removed as it is no longer used */
 
 /* Animations for drawing state */
 .gift-box.dimmed {
