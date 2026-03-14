@@ -62,46 +62,16 @@ document.addEventListener("keydown", (e) => {
         currentSecretKeys = currentSecretKeys.slice(-2);
     }
 
-    checkAndSetSecret(currentSecretKeys);
-});
-
-// 2.5 Mobile Secret Input (Tap header 5 times)
-const secretTrigger = document.getElementById("secret-trigger");
-let tapCount = 0;
-let tapTimeout;
-
-secretTrigger.addEventListener("click", () => {
-    tapCount++;
-    
-    // Reset the count after 2 seconds of inactivity
-    clearTimeout(tapTimeout);
-    tapTimeout = setTimeout(() => {
-        tapCount = 0;
-    }, 2000);
-
-    // If tapped 5 times rapidly
-    if (tapCount >= 5) {
-        tapCount = 0; // Reset
-        
-        // Use a native prompt which is supported on all mobile browsers
-        const code = prompt("Enter Code:");
-        if (code) {
-            checkAndSetSecret(code.toLowerCase());
-        }
-    }
-});
-
-// Helper function to check code and activate trick
-function checkAndSetSecret(code) {
-    if (secretTargets[code]) {
-        activeTarget = secretTargets[code];
+    // Check if the 2-letter code matches any in our secretTargets
+    if (secretTargets[currentSecretKeys]) {
+        activeTarget = secretTargets[currentSecretKeys];
         // Turn on the tiny 1px indicator to show the MC the trick is set
         secretIndicator.classList.add("active");
         
         // Optional: Reset keys after match
         currentSecretKeys = ""; 
     }
-}
+});
 
 // 3. Handle Box Selection (The Trick Execution)
 function handleBoxClick(selectedBox) {

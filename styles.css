@@ -43,8 +43,6 @@ h1 {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
-    cursor: default; /* So it doesn't look clickable on desktop */
-    user-select: none; /* Prevent text selection during rapid tapping */
 }
 
 p {
