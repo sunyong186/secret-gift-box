@@ -109,7 +109,7 @@ function openModal(target) {
     }
 
     // Apply the trick: inject the target's data into the modal
-    winnerNameEl.textContent = result.name === "랜덤 뽑기" ? "축하합니다!" : `${result.name}님 당첨!`;
+    winnerNameEl.textContent = "축하합니다!";
     giftIconEl.textContent = result.number;
     giftDescriptionEl.textContent = "";
 
