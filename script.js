@@ -32,9 +32,9 @@ const giftIconEl = document.getElementById("gift-icon");
 const giftDescriptionEl = document.getElementById("gift-description");
 const closeModalBtn = document.getElementById("close-modal-btn");
 
-// 1. Initialize the 15 Grid Boxes
+// 1. Initialize the 12 Grid Boxes
 function initGrid() {
-    for (let i = 1; i <= 15; i++) {
+    for (let i = 1; i <= 12; i++) {
         const box = document.createElement("div");
         box.className = "gift-box";
         box.innerHTML = `

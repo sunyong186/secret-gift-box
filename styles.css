@@ -50,10 +50,10 @@ p {
     color: var(--text-secondary);
 }
 
-/* 15 Box Grid */
+/* 12 Box Grid */
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 2.5rem; /* Increased gap for larger boxes */
     width: 100%;
     max-width: 1000px; /* Increased max width to give boxes more room */
