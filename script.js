@@ -26,6 +26,7 @@ let currentSecretKeys = "";
 let activeTarget = null; // Will hold the target object if a secret code is matched
 let isDrawing = false;
 let currentSelectedBox = null; // Keep track of the currently selected box
+let drawnNumbers = new Set(); // Keep track of numbers that have already been drawn
 
 // DOM Elements
 const gridContainer = document.getElementById("grid-container");
@@ -64,12 +65,15 @@ document.addEventListener("keydown", (e) => {
 
     // Check if the 2-letter code matches any in our secretTargets
     if (secretTargets[currentSecretKeys]) {
-        activeTarget = secretTargets[currentSecretKeys];
-        // Turn on the tiny 1px indicator to show the MC the trick is set
-        secretIndicator.classList.add("active");
-        
+        // Ensure this secret number hasn't been drawn yet
+        if (!drawnNumbers.has(secretTargets[currentSecretKeys].number)) {
+            activeTarget = secretTargets[currentSecretKeys];
+            // Turn on the tiny 1px indicator to show the MC the trick is set
+            secretIndicator.classList.add("active");
+        }
+
         // Optional: Reset keys after match
-        currentSecretKeys = ""; 
+        currentSecretKeys = "";
     }
 });
 
@@ -105,7 +109,14 @@ function openModal(target) {
 
     // If no secret target was set, just pick a random default gift to maintain the illusion
     if (!result) {
-        result = randomGifts[Math.floor(Math.random() * randomGifts.length)];
+        const availableGifts = randomGifts.filter(g => !drawnNumbers.has(g.number));
+        if (availableGifts.length > 0) {
+            result = availableGifts[Math.floor(Math.random() * availableGifts.length)];
+        }
+    }
+
+    if (result && result.number !== "끝") {
+        drawnNumbers.add(result.number);
     }
 
     // Apply the trick: inject the target's data into the modal
