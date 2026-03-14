@@ -1,21 +1,25 @@
 // Configuration: The Secret Targets
 // This maps keyboard shortcuts to specific gifts/people
 const secretTargets = {
-    // Example: typing 'hg' sets the target to Hong Gil-dong receiving a Starbucks Gift Card
-    "hg": { name: "홍길동", giftIcon: "☕️", giftText: "스타벅스 5만원 상품권" },
-    "kc": { name: "김철수", giftIcon: "🥩", giftText: "한우 등심 세트" },
-    "yj": { name: "이영자", giftIcon: "✈️", giftText: "제주도 왕복 항공권" },
-    // Add up to 15 real people here.
-    // ...
+    "01": { name: "박지윤", number: "1" },
+    "02": { name: "김효정", number: "2" },
+    "03": { name: "오재현", number: "3" },
+    "04": { name: "김민혁", number: "4" },
+    "05": { name: "송서우", number: "5" },
+    "06": { name: "이아민", number: "6" },
+    "07": { name: "김혜원", number: "7" },
+    "08": { name: "오준우", number: "8" },
+    "09": { name: "서다은", number: "9" },
+    "10": { name: "서희원", number: "10" },
+    "11": { name: "서찬영", number: "11" },
+    "12": { name: "이지호", number: "12" }
 };
 
 // Fallback gifts for normal random draws (when no secret code is used)
-const randomGifts = [
-    { name: "랜덤 뽑기", giftIcon: "🍬", giftText: "츄파춥스 사탕" },
-    { name: "랜덤 뽑기", giftIcon: "🍿", giftText: "영화 관람권 1매" },
-    { name: "랜덤 뽑기", giftIcon: "☕️", giftText: "아메리카노 쿠폰" },
-    { name: "랜덤 뽑기", giftIcon: "🍫", giftText: "가나 초콜릿" }
-];
+const randomGifts = [];
+for (let i = 1; i <= 12; i++) {
+    randomGifts.push({ name: "랜덤 뽑기", number: i.toString() });
+}
 
 // State
 let currentSecretKeys = "";
@@ -40,7 +44,7 @@ function initGrid() {
         box.innerHTML = `
             <div class="box-icon">🎁</div>
         `;
-        
+
         // Add click listener
         box.addEventListener("click", () => handleBoxClick(box));
         gridContainer.appendChild(box);
@@ -63,9 +67,9 @@ document.addEventListener("keydown", (e) => {
         activeTarget = secretTargets[currentSecretKeys];
         // Turn on the tiny 1px indicator to show the MC the trick is set
         secretIndicator.classList.add("active");
-        
+
         // Optional: Reset keys after match
-        currentSecretKeys = ""; 
+        currentSecretKeys = "";
     }
 });
 
@@ -98,7 +102,7 @@ function handleBoxClick(selectedBox) {
 // 4. Show Result
 function openModal(target) {
     let result = target;
-    
+
     // If no secret target was set, just pick a random default gift to maintain the illusion
     if (!result) {
         result = randomGifts[Math.floor(Math.random() * randomGifts.length)];
@@ -106,32 +110,32 @@ function openModal(target) {
 
     // Apply the trick: inject the target's data into the modal
     winnerNameEl.textContent = result.name === "랜덤 뽑기" ? "축하합니다!" : `${result.name}님 당첨!`;
-    giftIconEl.textContent = result.giftIcon;
-    giftDescriptionEl.textContent = result.giftText;
+    giftIconEl.textContent = result.number;
+    giftDescriptionEl.textContent = "";
 
     // Show modal
     resultModal.classList.remove("hidden");
-    
+
     // Play confetti/sound effects here if you want to extend it
 }
 
 // 5. Reset for the next person
 closeModalBtn.addEventListener("click", () => {
     resultModal.classList.add("hidden");
-    
+
     // Hide the box that was just opened
     if (currentSelectedBox) {
         currentSelectedBox.classList.remove("selected");
         currentSelectedBox.classList.add("hidden-box");
         currentSelectedBox = null;
     }
-    
+
     // Reset Grid visuals
     const allBoxes = document.querySelectorAll(".gift-box:not(.hidden-box)");
     allBoxes.forEach(b => {
         b.classList.remove("dimmed");
     });
-    
+
     // Reset State
     activeTarget = null;
     currentSecretKeys = "";
