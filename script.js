@@ -42,7 +42,7 @@ function initGrid() {
         const box = document.createElement("div");
         box.className = "gift-box";
         box.innerHTML = `
-            <div class="box-icon">🎁</div>
+            <img src="mystery-box.jpeg" alt="Gift Box" class="box-image">
         `;
 
         // Add click listener
